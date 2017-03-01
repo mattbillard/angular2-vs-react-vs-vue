@@ -1,5 +1,11 @@
 
-export class Hero {
+export class Article {
   id: number;
-  name: string;
+  title: string;
+  text: string;
+
+  constructor(obj: any = {}) {
+    this.title = obj.title || '';
+    this.text = obj.text || '';
+  }
 }

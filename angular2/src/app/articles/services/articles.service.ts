@@ -1,53 +1,69 @@
-import { Injectable }    from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Hero } from './hero';
+import { Article } from '../classes/article';
+
 @Injectable()
-export class HeroService {
-  private headers = new Headers({'Content-Type': 'application/json'});
-  private heroesUrl = 'api/heroes';  // URL to web api
+export class ArticlesService {
+  private headers = new Headers({ 'Content-Type': 'application/json' });
+  private articlesUrl = 'api/articles';
+  private articles: Article[];
 
   constructor(private http: Http) { }
 
-  getHeroes(): Promise<Hero[]> {
-    return this.http.get(this.heroesUrl)
-               .toPromise()
-               .then(response => response.json().data as Hero[])
-               .catch(this.handleError);
+  getArticles(): Promise<Article[]> {
+    return this.http.get(this.articlesUrl)
+      .toPromise()
+      .then(response => {
+        this.articles = response.json().data as Article[]
+        return this.articles;
+      })
+      .catch(this.handleError);
   }
 
-  getHero(id: number): Promise<Hero> {
-    const url = `${this.heroesUrl}/${id}`;
+  getArticleById(id: number): Promise<Article> {
+    const url = `${this.articlesUrl}/${id}`;
     return this.http.get(url)
       .toPromise()
-      .then(response => response.json().data as Hero)
+      .then(response => response.json().data as Article)
       .catch(this.handleError);
   }
 
   delete(id: number): Promise<void> {
-    const url = `${this.heroesUrl}/${id}`;
-    return this.http.delete(url, {headers: this.headers})
+    const url = `${this.articlesUrl}/${id}`;
+    return this.http.delete(url, { headers: this.headers })
       .toPromise()
-      .then(() => null)
+      .then(() => {
+        var idx = this.articles.map(article => article.id).indexOf(id);
+        this.articles.splice(idx, 1);
+      })
       .catch(this.handleError);
   }
 
-  create(name: string): Promise<Hero> {
+  save(article: Article): Promise<Article> {
+    if (article.id) {
+      return this.update(article);
+    } else {
+      return this.create(article);
+    }
+  }
+
+  private create(article: Article): Promise<Article> {
     return this.http
-      .post(this.heroesUrl, JSON.stringify({name: name}), {headers: this.headers})
+      .post(this.articlesUrl, JSON.stringify(article), { headers: this.headers })
       .toPromise()
       .then(res => res.json().data)
       .catch(this.handleError);
   }
 
-  update(hero: Hero): Promise<Hero> {
-    const url = `${this.heroesUrl}/${hero.id}`;
+  private update(article: Article): Promise<Article> {
+    const url = `${this.articlesUrl}/${article.id}`;
     return this.http
-      .put(url, JSON.stringify(hero), {headers: this.headers})
+      .put(url, JSON.stringify(article), { headers: this.headers })
       .toPromise()
-      .then(() => hero)
+      .then(() => article)
       .catch(this.handleError);
   }
 

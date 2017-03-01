@@ -1,22 +1,27 @@
-<h2>My Heroes</h2>
-<div>
-  <label>Hero name:</label> <input #heroName />
-  <button (click)="add(heroName.value); heroName.value=''">
-    Add
-  </button>
-</div>
-<ul class="heroes">
-  <li *ngFor="let hero of heroes" (click)="onSelect(hero)"
-      [class.selected]="hero === selectedHero">
-    <span class="badge">{{hero.id}}</span>
-    <span>{{hero.name}}</span>
-    <button class="delete"
-      (click)="delete(hero); $event.stopPropagation()">x</button>
-  </li>
-</ul>
-<div *ngIf="selectedHero">
-  <h2>
-    {{selectedHero.name | uppercase}} is my hero
-  </h2>
-  <button (click)="gotoDetail()">View Details</button>
-</div>
+
+<h1>Articles</h1>
+
+<a href="" [routerLink]="['/article']" class="btn btn-primary">Create</a>
+<br><br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Article</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let article of articles">
+      <td>
+        <a href="" [routerLink]="['/article', article.id]">
+          {{article.id}}
+          {{article.title}}
+        </a>
+      </td>
+      <td>
+        <a href="" (click)="delete(article); $event.preventDefault();">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

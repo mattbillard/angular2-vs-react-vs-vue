@@ -1,39 +1,54 @@
 import 'rxjs/add/operator/switchMap';
 
-import { Component, OnInit }      from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Location }               from '@angular/common';
+import { Router } from '@angular/router';
 
-import { Hero }        from './hero';
-import { HeroService } from './hero.service';
+import { Article } from '../../classes/article';
+import { ArticlesService } from '../../services/articles.service';
 
 @Component({
   moduleId: module.id,
-  selector: 'my-hero-detail',
-  templateUrl: './hero-detail.component.html',
-  styleUrls: [ './hero-detail.component.css' ]
+  selector: 'article',
+  templateUrl: './article.component.html',
 })
-export class HeroDetailComponent implements OnInit {
-  hero: Hero;
+export class ArticleComponent implements OnInit {
+  article: Article;
 
   constructor(
-    private heroService: HeroService,
+    private articlesService: ArticlesService,
     private route: ActivatedRoute,
-    private location: Location
-  ) {}
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      if (params['id']) {
+        this.getArticleById();
+      } else {
+        this.article = new Article();
+      }
+    });
+  }
+
+  getArticleById() {
     this.route.params
-      .switchMap((params: Params) => this.heroService.getHero(+params['id']))
-      .subscribe(hero => this.hero = hero);
+      .switchMap((params: Params) => this.articlesService.getArticleById(+params['id']))
+      .subscribe(article => this.article = article);
+  }
+
+  goToArticles(): void {
+    this.router.navigate(['/articles']);
   }
 
   save(): void {
-    this.heroService.update(this.hero)
-      .then(() => this.goBack());
-  }
-
-  goBack(): void {
-    this.location.back();
+    this.articlesService.save(this.article)
+      .then(() => {
+        console.log('Success: article saved');
+        this.goToArticles();
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 }

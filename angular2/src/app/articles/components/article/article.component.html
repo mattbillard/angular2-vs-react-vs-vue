@@ -1,11 +1,22 @@
-<div *ngIf="hero">
-  <h2>{{hero.name}} details!</h2>
-  <div>
-    <label>id: </label>{{hero.id}}</div>
-  <div>
-    <label>name: </label>
-    <input [(ngModel)]="hero.name" placeholder="name" />
-   </div>
-  <button (click)="goBack()">Back</button>
-  <button (click)="save()">Save</button>
+<div *ngIf="article">
+  <h1>{{ (article.id) ? 'Update' : 'Create'}}</h1>
+  <form>
+    <div class="form-group" *ngIf="article.id">
+      <label>id</label>
+      {{article.id}}
+    </div>
+    
+    <div class="form-group">
+      <label for="title">title</label>
+      <input [(ngModel)]="article.title" type="input" class="form-control" id="title" name="title" placeholder="title">
+    </div>
+
+    <div class="form-group">
+      <label for="text">text</label>
+      <textarea [(ngModel)]="article.text" class="form-control" id="text" name="text" placeholder="text"></textarea>
+    </div>
+
+    <button (click)="goToArticles()" class="btn btn-default" type="button">Cancel</button>
+    <button (click)="save()" class="btn btn-primary" type="button">Save</button>
+  </form>
 </div>
