@@ -1,4 +1,8 @@
 {
+  "port": 3002,
+  "ui": {
+    "port": 3003
+  },
   "server": {
     "baseDir": "src",
     "routes": {

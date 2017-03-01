@@ -1,28 +1,18 @@
 {
-  "name": "angular-quickstart",
+  "name": "angular2-example",
   "version": "1.0.0",
-  "description": "QuickStart package.json from the documentation, supplemented with testing support",
+  "description": "Simple CRUD example with Angular2",
   "scripts": {
     "build": "tsc -p src/",
     "build:watch": "tsc -p src/ -w",
-    "build:e2e": "tsc -p e2e/",
     "serve": "lite-server -c=bs-config.json",
-    "serve:e2e": "lite-server -c=bs-config.e2e.json",
     "prestart": "npm run build",
     "start": "concurrently \"npm run build:watch\" \"npm run serve\"",
-    "pree2e": "npm run build:e2e",
-    "e2e": "concurrently \"npm run serve:e2e\" \"npm run protractor\" --kill-others --success first",
-    "preprotractor": "webdriver-manager update",
-    "protractor": "protractor protractor.config.js",
-    "pretest": "npm run build",
-    "test": "concurrently \"npm run build:watch\" \"karma start karma.conf.js\"",
-    "pretest:once": "npm run build",
-    "test:once": "karma start karma.conf.js --single-run",
     "lint": "tslint ./src/**/*.ts -t verbose",
     "clean": "find ./src/app \\( -name \"*.js\" -o -name \"*.js.map\" \\) -type f -delete"
   },
   "keywords": [],
-  "author": "",
+  "author": "Matt Billard",
   "license": "MIT",
   "dependencies": {
     "@angular/common": "~2.4.0",
@@ -33,18 +23,18 @@
     "@angular/platform-browser": "~2.4.0",
     "@angular/platform-browser-dynamic": "~2.4.0",
     "@angular/router": "~3.4.0",
-
     "angular-in-memory-web-api": "~0.2.4",
-    "systemjs": "0.19.40",
+    "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
+    "jquery": "^3.1.1",
     "rxjs": "5.0.1",
+    "systemjs": "0.19.40",
     "zone.js": "^0.7.4"
   },
   "devDependencies": {
     "concurrently": "^3.2.0",
     "lite-server": "^2.2.2",
     "typescript": "~2.0.10",
-
     "canonical-path": "0.0.2",
     "tslint": "^3.15.1",
     "lodash": "^4.16.4",
@@ -56,7 +46,6 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~4.0.14",
     "rimraf": "^2.5.4",
-
     "@types/node": "^6.0.46",
     "@types/jasmine": "2.5.36"
   },
