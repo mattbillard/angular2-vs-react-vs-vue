@@ -1,20 +1,18 @@
 import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
 
-const CourseListRow = ({course}) => {
+const ArticlesListRow = ({article, onDelete}) => {
   return (
     <tr>
-      <td><a href={course.watchHref} target="_blank">Watch</a></td>
-      <td><Link to={'/course/' + course.id}>{course.title}</Link></td>
-      <td>{course.authorId}</td>
-      <td>{course.category}</td>
-      <td>{course.length}</td>
+      <td><Link to={'/article/' + article.id}>{article.id} {article.title}</Link></td>
+      <td><a href="" onClick={function(event) { onDelete(event, article.id);}}>Delete</a></td>
     </tr>
   );
 };
 
-CourseListRow.propTypes = {
-  course: PropTypes.object.isRequired
+ArticlesListRow.propTypes = {
+  article: PropTypes.object.isRequired,
+  onDelete: PropTypes.func.isRequired
 };
 
-export default CourseListRow;
+export default ArticlesListRow;

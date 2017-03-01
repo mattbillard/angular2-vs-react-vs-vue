@@ -1,29 +1,27 @@
 import React, {PropTypes} from 'react';
-import CourseListRow from './CourseListRow';
+import ArticlesListRow from './ArticlesListRow';
 
-const CourseList = ({courses}) => {
+const ArticlesList = ({articles, onDelete}) => {
   return (
     <table className="table">
       <thead>
       <tr>
-        <th>&nbsp;</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Category</th>
-        <th>Length</th>
+        <th>Article</th>
+        <th></th>
       </tr>
       </thead>
       <tbody>
-      {courses.map(course =>
-        <CourseListRow key={course.id} course={course}/>
+      {articles.map(article =>
+        <ArticlesListRow key={article.id} article={article} onDelete={onDelete}/>
       )}
       </tbody>
     </table>
   );
 };
 
-CourseList.propTypes = {
-  courses: PropTypes.array.isRequired
+ArticlesList.propTypes = {
+  articles: PropTypes.array.isRequired,
+  onDelete: PropTypes.func.isRequired
 };
 
-export default CourseList;
+export default ArticlesList;

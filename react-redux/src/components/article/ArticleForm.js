@@ -1,57 +1,46 @@
 import React from 'react';
 import TextInput from '../common/TextInput';
-import SelectInput from '../common/SelectInput';
+import TextArea from '../common/TextArea';
 
-const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors}) => {
+
+const ArticleForm = ({article, onChange, onCancel, onSave}) => {
+  let articleId = (article.id) ? (
+    <div className="form-group">
+      <label>id</label> {article.id}
+    </div>
+  ) : '';
+
   return (
     <form>
-      <h1>Manage Course</h1>
+      <h1>{article.id ? 'Update' : 'Create'}</h1>
+
+      {articleId}
+
       <TextInput
         name="title"
-        label="Title"
-        value={course.title}
+        label="title"
+        value={article.title}
         onChange={onChange}
-        error={errors.title}/>
+        placeholder="title"/>
 
-      <SelectInput
-        name="authorId"
-        label="Author"
-        value={course.authorId}
-        defaultOption="Select Author"
-        options={allAuthors}
-        onChange={onChange} error={errors.authorId}/>
-
-      <TextInput
-        name="category"
-        label="Category"
-        value={course.category}
+      <TextArea
+        name="text"
+        label="text"
+        value={article.text}
         onChange={onChange}
-        error={errors.category}/>
+        placeholder="text"/>
 
-      <TextInput
-        name="length"
-        label="Length"
-        value={course.length}
-        onChange={onChange}
-        error={errors.length}/>
-
-      <input
-        type="submit"
-        disabled={saving}
-        value={saving ? 'Saving...' : 'Save'}
-        className="btn btn-primary"
-        onClick={onSave}/>
+      <button onClick={onCancel} className="btn btn-default" type="button">Cancel</button>&nbsp;
+      <button onClick={onSave} className="btn btn-primary" type="button">Save</button>
     </form>
   );
 };
 
-CourseForm.propTypes = {
-  course: React.PropTypes.object.isRequired,
-  allAuthors: React.PropTypes.array,
-  onSave: React.PropTypes.func.isRequired,
+ArticleForm.propTypes = {
+  article: React.PropTypes.object.isRequired,
+  onCancel: React.PropTypes.func.isRequired,
   onChange: React.PropTypes.func.isRequired,
-  saving: React.PropTypes.bool,
-  errors: React.PropTypes.object
+  onSave: React.PropTypes.func.isRequired
 };
 
-export default CourseForm;
+export default ArticleForm;

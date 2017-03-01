@@ -1,38 +1,51 @@
 import * as types from './actionTypes';
-import courseApi from '../api/mockCourseApi';
-import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
+import articleApi from '../api/mockArticlesApi';
 
-export function loadCoursesSuccess(courses) {
-  return { type: types.LOAD_COURSES_SUCCESS, courses};
+export function loadArticlesSuccess(articles) {
+  return { type: types.LOAD_ARTICLES_SUCCESS, articles};
 }
 
-export function createCourseSuccess(course) {
-  return {type: types.CREATE_COURSE_SUCCESS, course};
+export function createArticleSuccess(article) {
+  return {type: types.CREATE_ARTICLE_SUCCESS, article};
 }
 
-export function updateCourseSuccess(course) {
-  return {type: types.UPDATE_COURSE_SUCCESS, course};
+export function deleteArticleSuccess(articleId) {
+  return {type: types.DELETE_ARTICLE_SUCCESS, articleId};
 }
 
-export function loadCourses() {
+export function updateArticleSuccess(article) {
+  return {type: types.UPDATE_ARTICLE_SUCCESS, article};
+}
+
+export function deleteArticle(articleId) {
+  return function (dispatch, getState) {
+    return articleApi.deleteArticle(articleId).then(() => {
+      dispatch(deleteArticleSuccess(articleId));
+    }).catch(error => {
+      throw (error);
+    });
+  };
+}
+
+export function loadArticles() {
   return function(dispatch) {
-    dispatch(beginAjaxCall());
-    return courseApi.getAllCourses().then(courses => {
-      dispatch(loadCoursesSuccess(courses));
+    return articleApi.getAllArticles().then(articles => {
+      dispatch(loadArticlesSuccess(articles));
     }).catch(error => {
       throw(error);
     });
   };
 }
 
-export function saveCourse(course) {
+export function saveArticle(article) {
   return function (dispatch, getState) {
-    dispatch(beginAjaxCall());
-    return courseApi.saveCourse(course).then(course => {
-      course.id ? dispatch(updateCourseSuccess(course)) :
-        dispatch(createCourseSuccess(course));
+    return articleApi.saveArticle(article).then(article => {
+      if (article.id)  {
+        dispatch(updateArticleSuccess(article));
+      } else {
+        dispatch(createArticleSuccess(article));
+      }
     }).catch(error => {
-      dispatch(ajaxCallError(error));
       throw(error);
     });
   };

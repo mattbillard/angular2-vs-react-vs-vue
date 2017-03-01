@@ -1,23 +1,22 @@
 import React, {PropTypes} from 'react';
 
-const TextInput = ({name, label, onChange, placeholder, value}) => {
+const TextArea = ({name, label, onChange, placeholder, value}) => {
   return (
     <div className="form-group">
       <label htmlFor={name}>{label}</label>
       <div className="field">
-        <input
-          type="text"
+        <textarea
           name={name}
           className="form-control"
           placeholder={placeholder}
           value={value}
-          onChange={onChange}/>
+          onChange={onChange}></textarea>
       </div>
     </div>
   );
 };
 
-TextInput.propTypes = {
+TextArea.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -25,4 +24,4 @@ TextInput.propTypes = {
   value: PropTypes.string
 };
 
-export default TextInput;
+export default TextArea;

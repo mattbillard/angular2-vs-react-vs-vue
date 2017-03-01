@@ -1,55 +1,59 @@
-import React, {PropTypes} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as courseActions from '../../actions/courseActions';
-import CourseList from './CourseList';
-import {browserHistory} from 'react-router';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as articleActions from '../../actions/articleActions';
+import ArticlesList from './ArticlesList';
+import { Link } from 'react-router';
 
-class CoursesPage extends React.Component {
+
+class ArticlesPage extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
+    this.delete = this.delete.bind(this);
   }
 
-  courseRow(course, index) {
-    return <div key={index}>{course.title}</div>;
+  articleRow(article, index) {
+    return <div key={index}>{article.title}</div>;
   }
 
-  redirectToAddCoursePage() {
-    browserHistory.push('/course');
+  delete(event, articleId) {
+    event.preventDefault();
+    this.props.actions.deleteArticle(articleId)
+      .then(() => console.log('Success: article deleted'))
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   render() {
-    const {courses} = this.props;
+    const {articles} = this.props;
 
     return (
       <div>
-        <h1>Courses</h1>
-        <input type="submit"
-               value="Add Course"
-               className="btn btn-primary"
-               onClick={this.redirectToAddCoursePage}/>
-        <CourseList courses={courses}/>
+        <h1>Articles</h1>
+        <Link to="/article" className="btn btn-primary link">Create</Link>
+        <br/><br/>
+        <ArticlesList articles={articles} onDelete={this.delete}/>
       </div>
     );
   }
 }
 
-CoursesPage.propTypes = {
-  courses: PropTypes.array.isRequired,
+ArticlesPage.propTypes = {
+  articles: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
   return {
-    courses: state.courses
+    articles: state.articles
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(courseActions, dispatch)
+    actions: bindActionCreators(articleActions, dispatch)
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ArticlesPage);

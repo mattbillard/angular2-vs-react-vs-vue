@@ -3,105 +3,67 @@ import delay from './delay';
 // This file mocks a web API by working with the hard-coded data below.
 // It uses setTimeout to simulate the delay of an AJAX call.
 // All calls return promises.
-const courses = [
-  {
-    id: "react-flux-building-applications",
-    title: "Building Applications in React and Flux",
-    watchHref: "http://www.pluralsight.com/courses/react-flux-building-applications",
-    authorId: "cory-house",
-    length: "5:08",
-    category: "JavaScript"
-  },
-  {
-    id: "clean-code",
-    title: "Clean Code: Writing Code for Humans",
-    watchHref: "http://www.pluralsight.com/courses/writing-clean-code-humans",
-    authorId: "cory-house",
-    length: "3:10",
-    category: "Software Practices"
-  },
-  {
-    id: "architecture",
-    title: "Architecting Applications for the Real World",
-    watchHref: "http://www.pluralsight.com/courses/architecting-applications-dotnet",
-    authorId: "cory-house",
-    length: "2:52",
-    category: "Software Architecture"
-  },
-  {
-    id: "career-reboot-for-developer-mind",
-    title: "Becoming an Outlier: Reprogramming the Developer Mind",
-    watchHref: "http://www.pluralsight.com/courses/career-reboot-for-developer-mind",
-    authorId: "cory-house",
-    length: "2:30",
-    category: "Career"
-  },
-  {
-    id: "web-components-shadow-dom",
-    title: "Web Component Fundamentals",
-    watchHref: "http://www.pluralsight.com/courses/web-components-shadow-dom",
-    authorId: "cory-house",
-    length: "5:10",
-    category: "HTML5"
-  }
+const articles = [
+  { id: 11, title: 'Mr. Nice', text: 'Text for Mr. Nice' },
+  { id: 12, title: 'Narco', text: 'Text for Narco' },
+  { id: 13, title: 'Bombasto', text: 'Text for Bombasto' },
+  { id: 14, title: 'Celeritas', text: 'Text for Celeritas' },
+  { id: 15, title: 'Magneta', text: 'Text for Magneta' },
+  { id: 16, title: 'RubberMan', text: 'Text for RubberMan' },
+  { id: 17, title: 'Dynama', text: 'Text for Dynama' },
+  { id: 18, title: 'Dr IQ', text: 'Text for Dr IQ' },
+  { id: 19, title: 'Magma', text: 'Text for Magma' },
+  { id: 20, title: 'Tornado', text: 'Text for Tornado' }
 ];
 
 function replaceAll(str, find, replace) {
   return str.replace(new RegExp(find, 'g'), replace);
 }
 
+let id = 21;
+
 //This would be performed on the server in a real app. Just stubbing in.
-const generateId = (course) => {
-  return replaceAll(course.title, ' ', '-');
+const generateId = (article) => {
+  return id++;
 };
 
-class CourseApi {
-  static getAllCourses() {
+class ArticleApi {
+  static getAllArticles() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve(Object.assign([], courses));
+        resolve(Object.assign([], articles));
       }, delay);
     });
   }
 
-  static saveCourse(course) {
-    course = Object.assign({}, course); // to avoid manipulating object passed in.
+  static saveArticle(article) {
+    article = Object.assign({}, article); // to avoid manipulating object passed in.
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        // Simulate server-side validation
-        const minCourseTitleLength = 1;
-        if (course.title.length < minCourseTitleLength) {
-          reject(`Title must be at least ${minCourseTitleLength} characters.`);
-        }
-
-        if (course.id) {
-          const existingCourseIndex = courses.findIndex(a => a.id == course.id);
-          courses.splice(existingCourseIndex, 1, course);
+        if (article.id) {
+          const existingArticleIndex = articles.findIndex(a => a.id == article.id);
+          articles.splice(existingArticleIndex, 1, article);
         } else {
-          //Just simulating creation here.
-          //The server would generate ids and watchHref's for new courses in a real app.
-          //Cloning so copy returned is passed by value rather than by reference.
-          course.id = generateId(course);
-          course.watchHref = `http://www.pluralsight.com/courses/${course.id}`;
-          courses.push(course);
+          article.id = generateId(article);
+          articles.push(article);
         }
 
-        resolve(course);
+        resolve(article);
       }, delay);
     });
   }
 
-  static deleteCourse(courseId) {
+  static deleteArticle(articleId) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        const indexOfCourseToDelete = courses.findIndex(course => {
-          course.courseId == courseId;
+        const indexOfArticleToDelete = articles.findIndex(article => {
+          article.articleId == articleId;
         });
-        courses.splice(indexOfCourseToDelete, 1);
+        articles.splice(indexOfArticleToDelete, 1);
         resolve();
       }, delay);
     });
   }
 }
 
-export default CourseApi;
+export default ArticleApi;

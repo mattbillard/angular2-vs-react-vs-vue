@@ -6,25 +6,22 @@ import {connect} from 'react-redux';
 class App extends React.Component {
   render() {
     return (
-      <div className="container-fluid">
-        <Header
-          loading={this.props.loading}
-        />
-        {this.props.children}
+      <div>
+        <Header />
+        <div className="container">
+          {this.props.children}
+        </div>
       </div>
     );
   }
 }
 
 App.propTypes = {
-  children: PropTypes.object.isRequired,
-  loading: PropTypes.bool.isRequired
+  children: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
-  return {
-    loading: state.ajaxCallsInProgress > 0
-  };
+  return {};
 }
 
 export default connect(mapStateToProps)(App);
