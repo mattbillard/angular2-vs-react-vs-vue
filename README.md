@@ -20,6 +20,18 @@ Whichever you choose, there will be a lot to learn.
 
 #Installing Dependencies and Running the Projects 
 
+##Server
+This is a simple Express server for our articles api to which we can make get, post, put, and delete requests.
+
+Run the following:
+```
+cd server-api
+npm install
+npm install nodemon -g 
+nodemon bin/www
+```
+
+
 ##Angular2
 The original code was taken from the Angular2 "Tour of Heroes" app in the official documentation:
 https://angular.io/docs/ts/latest/tutorial/

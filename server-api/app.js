@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
+var articles = require('./routes/articles');
 var users = require('./routes/users');
 
 var app = express();
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/api/articles', articles);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -45,8 +47,10 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
+  console.error('\n', req.method, req.originalUrl, '\n', err);
   res.status(err.status || 500);
-  res.render('error');
+  // res.render('error');
+  req.xhr ? res.send('ERROR: ' + res.locals.message) : res.render('error');
 });
 
 module.exports = app;
