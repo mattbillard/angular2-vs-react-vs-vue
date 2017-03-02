@@ -20,15 +20,17 @@ Whichever you choose, there will be a lot to learn.
 
 #Installing Dependencies and Running the Projects 
 
+You will need to install and then run all 3 of the following to try the 2 examples.
+
 ##Server
 This is a simple Express server for our articles api to which we can make get, post, put, and delete requests.
 
 Run the following:
 ```
 cd server-api
-npm install
 npm install nodemon -g 
-nodemon bin/www
+npm install
+npm start
 ```
 
 
