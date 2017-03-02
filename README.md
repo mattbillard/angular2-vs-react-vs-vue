@@ -42,6 +42,7 @@ The heroes dashboard, list, and form have been changed into a simple CRUD form f
 Run the following:
 ```
 cd angular2
+npm install typescript tslint -g
 npm install
 npm start
 ```

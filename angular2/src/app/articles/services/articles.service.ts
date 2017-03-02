@@ -17,7 +17,7 @@ export class ArticlesService {
     return this.http.get(this.articlesUrl)
       .toPromise()
       .then(response => {
-        this.articles = response.json() as Article[]
+        this.articles = response.json() as Article[];
         return this.articles;
       })
       .catch(this.handleError);
@@ -36,7 +36,7 @@ export class ArticlesService {
     return this.http.delete(url, { headers: this.headers })
       .toPromise()
       .then(() => {
-        var idx = this.articles.map(article => article.id).indexOf(id);
+        let idx = this.articles.map(article => article.id).indexOf(id);
         this.articles.splice(idx, 1);
       })
       .catch(this.handleError);

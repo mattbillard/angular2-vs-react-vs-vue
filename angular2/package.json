@@ -6,7 +6,7 @@
     "build": "tsc -p src/",
     "build:watch": "tsc -p src/ -w",
     "serve": "lite-server -c=bs-config.json",
-    "prestart": "npm run build",
+    "prestart": "npm run lint && npm run build",
     "start": "concurrently \"npm run build:watch\" \"npm run serve\"",
     "lint": "tslint ./src/**/*.ts -t verbose",
     "clean": "find ./src/app \\( -name \"*.js\" -o -name \"*.js.map\" \\) -type f -delete"
