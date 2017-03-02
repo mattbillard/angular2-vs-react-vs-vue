@@ -1,5 +1,6 @@
 import * as types from './actionTypes';
-import articleApi from '../api/mockArticlesApi';
+
+const articlesUrl = `${window.location.protocol}//${window.location.hostname}:3000/api/articles`;
 
 export function loadArticlesSuccess(articles) {
   return { type: types.LOAD_ARTICLES_SUCCESS, articles};
@@ -19,7 +20,10 @@ export function updateArticleSuccess(article) {
 
 export function deleteArticle(articleId) {
   return function (dispatch, getState) {
-    return articleApi.deleteArticle(articleId).then(() => {
+    return $.ajax({
+      url: `${articlesUrl}/${articleId}`,
+      method: 'DELETE'
+    }).then(() => {
       dispatch(deleteArticleSuccess(articleId));
     }).catch(error => {
       throw (error);
@@ -29,7 +33,10 @@ export function deleteArticle(articleId) {
 
 export function loadArticles() {
   return function(dispatch) {
-    return articleApi.getAllArticles().then(articles => {
+    return $.ajax({ 
+      url: articlesUrl, 
+      method: 'GET' 
+    }).then(articles => {
       dispatch(loadArticlesSuccess(articles));
     }).catch(error => {
       throw(error);
@@ -39,14 +46,30 @@ export function loadArticles() {
 
 export function saveArticle(article) {
   return function (dispatch, getState) {
-    return articleApi.saveArticle(article).then(article => {
-      if (article.id)  {
-        dispatch(updateArticleSuccess(article));
-      } else {
-        dispatch(createArticleSuccess(article));
-      }
-    }).catch(error => {
-      throw(error);
-    });
+    if (article.id) {
+      return updateArticle(article, dispatch);
+    } else {
+      return createArticle(article, dispatch);
+    }
   };
+}
+
+function createArticle(article, dispatch) {
+  return $.ajax({
+    url: articlesUrl,
+    method: 'POST',
+    data: article
+  })
+  .then(article => { dispatch(createArticleSuccess(article)); })
+  .catch(error => { throw (error); });
+}
+
+function updateArticle(article, dispatch) {
+  return $.ajax({
+    url: `${articlesUrl}/${article.id}`,
+    method: 'PUT',
+    data: article
+  })
+  .then(article => { dispatch(updateArticleSuccess(article)); })
+  .catch(error => { throw (error); });
 }

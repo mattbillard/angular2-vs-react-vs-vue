@@ -45,6 +45,7 @@ router.put('/:id', function (req, res, next) {
   let id = parseInt(req.params.id);
   let article = req.body;
 
+  article.id = id;
   articles[id] = article;
   
   delayedSend(res, article);
