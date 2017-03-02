@@ -2,3 +2,7 @@
 body {
     padding-top: 50px;
 }
+
+textarea {
+    min-height: 150px;
+}

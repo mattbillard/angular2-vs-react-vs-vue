@@ -31,7 +31,7 @@ class ArticlesPage extends React.Component {
     return (
       <div>
         <h1>Articles</h1>
-        <Link to="/article" className="btn btn-primary link">Create</Link>
+        <Link to="/article" className="btn btn-primary">Create</Link>
         <br/><br/>
         <ArticlesList articles={articles} onDelete={this.delete}/>
       </div>

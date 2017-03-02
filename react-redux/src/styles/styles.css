@@ -3,6 +3,6 @@ body {
     padding-top: 50px;
 }
 
-.link {
-    cursor: pointer;
+textarea {
+    min-height: 150px;
 }
