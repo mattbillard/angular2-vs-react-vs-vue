@@ -8,7 +8,7 @@ import { Article } from '../classes/article';
 @Injectable()
 export class ArticlesService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private articlesUrl = 'api/articles';
+  private articlesUrl = `${window.location.protocol}//${window.location.hostname}:3000/api/articles`;
   private articles: Article[];
 
   constructor(private http: Http) { }
@@ -17,7 +17,7 @@ export class ArticlesService {
     return this.http.get(this.articlesUrl)
       .toPromise()
       .then(response => {
-        this.articles = response.json().data as Article[]
+        this.articles = response.json() as Article[]
         return this.articles;
       })
       .catch(this.handleError);
@@ -27,7 +27,7 @@ export class ArticlesService {
     const url = `${this.articlesUrl}/${id}`;
     return this.http.get(url)
       .toPromise()
-      .then(response => response.json().data as Article)
+      .then(response => response.json() as Article)
       .catch(this.handleError);
   }
 
@@ -54,7 +54,7 @@ export class ArticlesService {
     return this.http
       .post(this.articlesUrl, JSON.stringify(article), { headers: this.headers })
       .toPromise()
-      .then(res => res.json().data)
+      .then(res => res.json())
       .catch(this.handleError);
   }
 
