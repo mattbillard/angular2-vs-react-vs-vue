@@ -18,6 +18,7 @@ const ArticlesList = ({articles, onDelete}) => {
     </table>
   );
 };
+console.log('--- ArticlesList.js: onDelete={onDelete}');
 
 ArticlesList.propTypes = {
   articles: PropTypes.array.isRequired,

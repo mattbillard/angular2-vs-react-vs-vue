@@ -13,6 +13,7 @@ export default function articleReducer(state = initialState.articles, action) {
       ];
 
     case types.DELETE_ARTICLE_SUCCESS:
+      console.log('--- articleReducer.js: case types.DELETE_ARTICLE_SUCCESS'); 
       return state.filter(article => article.id !== action.articleId);
 
     case types.UPDATE_ARTICLE_SUCCESS:

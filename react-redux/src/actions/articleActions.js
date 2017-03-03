@@ -11,6 +11,7 @@ export function createArticleSuccess(article) {
 }
 
 export function deleteArticleSuccess(articleId) {
+  console.log('--- articleActions.js: deleteArticleSuccess()');
   return {type: types.DELETE_ARTICLE_SUCCESS, articleId};
 }
 
@@ -20,6 +21,8 @@ export function updateArticleSuccess(article) {
 
 export function deleteArticle(articleId) {
   return function (dispatch, getState) {
+    console.log('--- articleActions.js: deleteArticle()');
+
     return $.ajax({
       url: `${articlesUrl}/${articleId}`,
       method: 'DELETE'

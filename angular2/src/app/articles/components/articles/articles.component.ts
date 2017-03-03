@@ -10,9 +10,12 @@ import { ArticlesService } from '../../services/articles.service';
 })
 export class ArticlesComponent implements OnInit {
   articles: Article[];
+  console = console;
 
   constructor(
-    private articlesService: ArticlesService) { }
+    private articlesService: ArticlesService) {
+    console.log('--- articles.component.ts: private articlesService: ArticlesService"');
+  }
 
   ngOnInit(): void {
     this.getArticles();
@@ -25,6 +28,8 @@ export class ArticlesComponent implements OnInit {
   }
 
   delete(article: Article): void {
+    console.log('--- articles.component.ts: delete()');
+
     this.articlesService
       .delete(article.id)
       .then(() => console.log('Success: article deleted'))
@@ -33,3 +38,5 @@ export class ArticlesComponent implements OnInit {
       });
   }
 }
+
+console.log('--- articles.component.html: (click)="delete(article);"');

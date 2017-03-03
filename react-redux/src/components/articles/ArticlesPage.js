@@ -9,6 +9,8 @@ import { Link } from 'react-router';
 class ArticlesPage extends React.Component {
   constructor(props, context) {
     super(props, context);
+
+    console.log('--- ArticlesPage.js: this.delete = this.delete.bind(this);');
     this.delete = this.delete.bind(this);
   }
 
@@ -17,6 +19,8 @@ class ArticlesPage extends React.Component {
   }
 
   delete(event, articleId) {
+    console.log('--- ArticlesPage.js: delete()');
+
     event.preventDefault();
     this.props.actions.deleteArticle(articleId)
       .then(() => console.log('Success: article deleted'))
@@ -38,6 +42,7 @@ class ArticlesPage extends React.Component {
     );
   }
 }
+console.log('--- ArticlesPage.js: onDelete={this.delete}');
 
 ArticlesPage.propTypes = {
   articles: PropTypes.array.isRequired,
