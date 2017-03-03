@@ -73,3 +73,26 @@ There's a lot to learn with either solution. I would recommend the following vid
 ##React+Redux
 - https://app.pluralsight.com/library/courses/react-flux-building-applications 
 - https://app.pluralsight.com/library/courses/react-redux-react-router-es6 
+
+
+
+#A Note on IDE's 
+You'll want to configure your IDE to hide the .js and .js.map files generated from Angular's .ts files. Here's how to do it in 2 popular IDE's.
+
+##VS Code
+Add this to your settings.json file:
+{
+    "files.exclude": {
+        "**/*.js": {"when": "$(basename).ts"},
+        "**/*.js.map": true
+    }
+}
+
+##IntelliJ
+Settings > Languages & Frameworks > TypeScript 
+- Check "Enable TypeScript Compiler"
+- Uncheck "Track changes"
+
+You will also want to set the version of JavaScript so IntelliJ doesn't highlight all the ES6 and JSX as errors:
+Settings > Languages & Frameworks > JavaScript
+JavaScript language version: JSX Harmony 
