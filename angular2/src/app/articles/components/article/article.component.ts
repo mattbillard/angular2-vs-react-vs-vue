@@ -8,7 +8,6 @@ import { Article } from '../../classes/article';
 import { ArticlesService } from '../../services/articles.service';
 
 @Component({
-  moduleId: module.id,
   selector: 'article',
   templateUrl: './article.component.html',
 })

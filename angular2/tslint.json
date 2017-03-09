@@ -88,18 +88,8 @@
       "check-separator",
       "check-type"
     ],
-    "directive-selector": [
-      true,
-      "attribute",
-      "my",
-      "camelCase"
-    ],
-    "component-selector": [
-      true,
-      "element",
-      "my",
-      "kebab-case"
-    ],
+    "directive-selector": false,
+    "component-selector": false,
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,

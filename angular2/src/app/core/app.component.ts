@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
+import '../../styles/styles.scss';
+
 @Component({
-  moduleId: module.id,
   selector: 'my-app',
   templateUrl: 'app.component.html',
 })

@@ -59,7 +59,7 @@ module.exports = function makeWebpackConfig() {
    */
   config.output = isTest ? {} : {
     path: root('dist'),
-    publicPath: isProd ? '/' : 'http://localhost:8080/',
+    publicPath: isProd ? '/' : `http://localhost:3002/`,
     filename: isProd ? 'js/[name].[hash].js' : 'js/[name].js',
     chunkFilename: isProd ? '[id].[hash].chunk.js' : '[id].chunk.js'
   };
@@ -166,12 +166,18 @@ module.exports = function makeWebpackConfig() {
       }
     }),
 
+    new webpack.ProvidePlugin({
+      jQuery: 'jquery',
+      $: 'jquery',
+      jquery: 'jquery'
+    }),
+
     // Workaround needed for angular 2 angular/angular#11580
-      new webpack.ContextReplacementPlugin(
-        // The (\\|\/) piece accounts for path separators in *nix and Windows
-        /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-        root('./src') // location of your src
-      ),
+    new webpack.ContextReplacementPlugin(
+      // The (\\|\/) piece accounts for path separators in *nix and Windows
+      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      root('./src') // location of your src
+    ),
 
     // Tslint configuration for webpack 2
     new webpack.LoaderOptionsPlugin({

@@ -4,7 +4,6 @@ import { Article } from '../../classes/article';
 import { ArticlesService } from '../../services/articles.service';
 
 @Component({
-  moduleId: module.id,
   selector: 'articles',
   templateUrl: './articles.component.html',
 })
