@@ -166,6 +166,7 @@ module.exports = function makeWebpackConfig() {
       }
     }),
 
+    //Add global libs  
     new webpack.ProvidePlugin({
       jQuery: 'jquery',
       $: 'jquery',
