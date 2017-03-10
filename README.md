@@ -104,6 +104,9 @@ There's a lot to learn with either solution. I would recommend the following vid
 - https://app.pluralsight.com/library/courses/react-flux-building-applications 
 - https://app.pluralsight.com/library/courses/react-redux-react-router-es6 
 
+## Webpack
+The Angular2 webpack solution is from:
+- https://github.com/preboot/angular2-webpack
 
 
 ## A Note on IDE's 
