@@ -29,7 +29,7 @@ Choose Angular2 if you want standardized technologies across your company and gr
 
 ### React+Redux
 Choose React+Redux if you want 1) a smaller, slightly faster app 2) easier mobile development 3) better support for SEO via server-side rendering  
-- React+Redux also had some clear benefits. The production version of this app was about 1/10 of the size (React+Redux: 180KB vs Angular2: 1.5MB) and 1/4 of the time to load and render the DOM (React+Redux: 500ms vs Angular2: 2s)
+- The production version of the React+Redux app was about 1/10 of the size (React+Redux: 180KB vs Angular2: 1.5MB) and 1/4 of the time to load and render the DOM (React+Redux: 500ms vs Angular2: 2s)
 - React+Redux emphasize immutable data. You don't have to worry about other developers modifying state in hard to find ways.
 - React seems to have the stronger mobile toolset with React Native. (I would need to look into this more.)
 - Server-side rendering / isomorphic apps: React's isomorphic capabilities are more mature and have been around much longer than "Universal," Angular2's solution. If Search Engine Optimization (SEO) is important to you, React+Redux may be the better choice. 
