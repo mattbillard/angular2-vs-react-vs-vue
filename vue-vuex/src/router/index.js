@@ -1,15 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
+import Article from '@/modules/articles/components/Article'
+import Articles from '@/modules/articles/components/Articles'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
-    {
-      path: '/',
-      name: 'Hello',
-      component: Hello
-    }
+    { path: '/articles', component: Articles },
+    { path: '/article', component: Article },
+    { path: '/article/:id', component: Article },
+    { path: '*', redirect: '/articles' }
   ]
 })

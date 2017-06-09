@@ -91,6 +91,22 @@ Build:
 npm run build 
 ```
 
+### Vue.js+Vuex
+Vue CLI's command "vue init webpack PROJECT_NAME" was used
+
+Run the following:
+```
+cd vuejs
+npm install
+npm start
+```
+
+Build: 
+```
+npm run build 
+http-server ./dist 
+```
+
 
 
 ## Learning More
