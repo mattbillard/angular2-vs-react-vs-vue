@@ -14,7 +14,7 @@ export class ArticlePage extends React.Component {
 
     this.goToArticles = this.goToArticles.bind(this);
     this.updateState = this.updateState.bind(this);
-    this.save = this.save.bind(this);
+    this.saveArticle = this.saveArticle.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -33,7 +33,7 @@ export class ArticlePage extends React.Component {
     return this.setState({article: article});
   }
 
-  save(event) {
+  saveArticle(event) {
     event.preventDefault();
     this.props.actions.saveArticle(this.state.article)
       .then(() => {
@@ -54,7 +54,7 @@ export class ArticlePage extends React.Component {
       <ArticleForm
         onChange={this.updateState}
         onCancel={this.goToArticles}
-        onSave={this.save}
+        onSave={this.saveArticle}
         article={this.state.article}
       />
     );

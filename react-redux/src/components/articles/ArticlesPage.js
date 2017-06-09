@@ -10,16 +10,16 @@ class ArticlesPage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    console.log('--- ArticlesPage.js: this.delete = this.delete.bind(this);');
-    this.delete = this.delete.bind(this);
+    console.log('--- ArticlesPage.js: this.deleteArticle = this.deleteArticle.bind(this);');
+    this.deleteArticle = this.deleteArticle.bind(this);
   }
 
   articleRow(article, index) {
     return <div key={index}>{article.title}</div>;
   }
 
-  delete(event, articleId) {
-    console.log('--- ArticlesPage.js: delete()');
+  deleteArticle(event, articleId) {
+    console.log('--- ArticlesPage.js: deleteArticle()');
 
     event.preventDefault();
     this.props.actions.deleteArticle(articleId)
@@ -37,12 +37,12 @@ class ArticlesPage extends React.Component {
         <h1>Articles</h1>
         <Link to="/article" className="btn btn-primary">Create</Link>
         <br/><br/>
-        <ArticlesList articles={articles} onDelete={this.delete}/>
+        <ArticlesList articles={articles} onDelete={this.deleteArticle}/>
       </div>
     );
   }
 }
-console.log('--- ArticlesPage.js: onDelete={this.delete}');
+console.log('--- ArticlesPage.js: onDelete={this.deleteArticle}');
 
 ArticlesPage.propTypes = {
   articles: PropTypes.array.isRequired,

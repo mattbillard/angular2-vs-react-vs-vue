@@ -13,6 +13,19 @@ export class ArticlesService {
 
   constructor(private http: Http) { }
 
+  deleteArticle(id: number): Promise<void> {
+    console.log('--- articles.service.ts: deleteArticle()');
+    
+    const url = `${this.articlesUrl}/${id}`;
+    return this.http.delete(url, { headers: this.headers })
+      .toPromise()
+      .then(() => {
+        let idx = this.articles.findIndex((article) => article.id === id)
+        this.articles.splice(idx, 1);
+      })
+      .catch(this.handleError);
+  }
+
   getArticles(): Promise<Article[]> {
     return this.http.get(this.articlesUrl)
       .toPromise()
@@ -31,20 +44,7 @@ export class ArticlesService {
       .catch(this.handleError);
   }
 
-  delete(id: number): Promise<void> {
-    console.log('--- articles.service.ts: delete()');
-    
-    const url = `${this.articlesUrl}/${id}`;
-    return this.http.delete(url, { headers: this.headers })
-      .toPromise()
-      .then(() => {
-        let idx = this.articles.map(article => article.id).indexOf(id);
-        this.articles.splice(idx, 1);
-      })
-      .catch(this.handleError);
-  }
-
-  save(article: Article): Promise<Article> {
+  saveArticle(article: Article): Promise<Article> {
     if (article.id) {
       return this.update(article);
     } else {

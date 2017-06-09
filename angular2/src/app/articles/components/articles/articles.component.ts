@@ -26,11 +26,11 @@ export class ArticlesComponent implements OnInit {
       .then(articles => this.articles = articles);
   }
 
-  delete(article: Article): void {
-    console.log('--- articles.component.ts: delete()');
+  deleteArticle(article: Article): void {
+    console.log('--- articles.component.ts: deleteArticle()');
 
     this.articlesService
-      .delete(article.id)
+      .deleteArticle(article.id)
       .then(() => console.log('Success: article deleted'))
       .catch(error => {
         console.error(error);
@@ -38,4 +38,4 @@ export class ArticlesComponent implements OnInit {
   }
 }
 
-console.log('--- articles.component.html: (click)="delete(article);"');
+console.log('--- articles.component.html: (click)="deleteArticle(article);"');

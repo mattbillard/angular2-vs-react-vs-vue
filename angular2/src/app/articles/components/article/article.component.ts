@@ -40,8 +40,8 @@ export class ArticleComponent implements OnInit {
     this.router.navigate(['/articles']);
   }
 
-  save(): void {
-    this.articlesService.save(this.article)
+  saveArticle(): void {
+    this.articlesService.saveArticle(this.article)
       .then(() => {
         console.log('Success: article saved');
         this.goToArticles();
