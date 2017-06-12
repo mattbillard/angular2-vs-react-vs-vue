@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Article from '@/modules/articles/components/Article'
-import Articles from '@/modules/articles/components/Articles'
+import Article from '@/modules/articles/Article'
+import Articles from '@/modules/articles/Articles'
 
 Vue.use(Router)
 
