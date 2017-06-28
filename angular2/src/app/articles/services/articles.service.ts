@@ -20,7 +20,7 @@ export class ArticlesService {
     return this.http.delete(url, { headers: this.headers })
       .toPromise()
       .then(() => {
-        let idx = this.articles.findIndex((article) => article.id === id)
+        let idx = this.articles.findIndex((article) => article.id === id);
         this.articles.splice(idx, 1);
       })
       .catch(this.handleError);

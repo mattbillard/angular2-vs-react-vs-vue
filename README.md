@@ -7,7 +7,7 @@ Basic example app to compare Angular2 vs React+Redux
 This project was created so that developers could more easily compare Angular2 and React. It has a simple CRUD form built in 
 1. Angular2 
 2. React+Redux 
-3. Vue.js+Vuex
+3. Vue+Vuex
 
 It's just a simple list of "blog articles" with create, update, and delete functionality. There's a lot more that could have been added to these 2 apps, but I felt it would be easier to compare the two without the distractions of form validation, user-confirmations, testing, etc. I wanted to focus on the bare minimum necessary for a CRUD example so others can easily compare apples to apples.
 
@@ -47,7 +47,6 @@ This is a simple Express server for our articles api to which we can make get, p
 Run the following:
 ```
 cd server-api
-npm install nodemon -g 
 npm install
 npm start
 ```
@@ -97,7 +96,7 @@ Vue CLI's command "vue init webpack PROJECT_NAME" was used
 
 Run the following:
 ```
-cd vuejs
+cd vue-vuex
 npm install
 npm start
 ```
@@ -120,6 +119,15 @@ There's a lot to learn with either solution. I would recommend the following vid
 ### React+Redux
 - https://app.pluralsight.com/library/courses/react-flux-building-applications 
 - https://app.pluralsight.com/library/courses/react-redux-react-router-es6 
+
+### Vue+Vuex
+- https://vuejs.org/v2/guide/
+- https://github.com/vuejs/learn-cli
+- https://router.vuejs.org/en/
+- http://vuex.vuejs.org/en/
+- https://github.com/vuejs/vuex/tree/dev/examples
+- https://github.com/vuejs/learn-devtools
+- https://github.com/vuejs/awesome-vue
 
 ## Webpack
 The Angular2 webpack solution is from:
