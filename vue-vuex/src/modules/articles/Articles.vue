@@ -21,7 +21,7 @@
             </router-link>
           </td>
           <td>
-            <a href="" v-on:click="console.log('--- Articles.vue: v-on:click'); deleteArticle(article); $event.preventDefault();">Delete</a>
+            <a href="" v-on:click="deleteArticle(article); $event.preventDefault();">Delete</a>
           </td>
         </tr>
       </tbody>
@@ -35,9 +35,6 @@ export default {
   computed: {
     articles () {
       return this.$store.state.articles.articles
-    },
-    console () {
-      return console
     }
   },
 

@@ -5,7 +5,7 @@ const ArticlesListRow = ({article, onDelete}) => {
   return (
     <tr>
       <td><Link to={'/article/' + article.id}>{article.id} {article.title}</Link></td>
-      <td><a href="" onClick={function (event) { console.log('--- ArticlesListRow.js: onClick()'); onDelete(event, article.id);}}>Delete</a></td>
+      <td><a href="" onClick={function (event) { onDelete(event, article.id);}}>Delete</a></td>
     </tr>
   );
 };

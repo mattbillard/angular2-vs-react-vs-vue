@@ -16,8 +16,7 @@ export class ArticlesService {
   deleteArticle(id: number): Promise<void> {
     console.log('--- articles.service.ts: deleteArticle()');
     
-    const url = `${this.articlesUrl}/${id}`;
-    return this.http.delete(url, { headers: this.headers })
+    return this.http.delete(`${this.articlesUrl}/${id}`, { headers: this.headers })
       .toPromise()
       .then(() => {
         let idx = this.articles.findIndex((article) => article.id === id);
@@ -37,8 +36,7 @@ export class ArticlesService {
   }
 
   getArticleById(id: number): Promise<Article> {
-    const url = `${this.articlesUrl}/${id}`;
-    return this.http.get(url)
+    return this.http.get(`${this.articlesUrl}/${id}`)
       .toPromise()
       .then(response => response.json() as Article)
       .catch(this.handleError);
@@ -61,9 +59,8 @@ export class ArticlesService {
   }
 
   private update(article: Article): Promise<Article> {
-    const url = `${this.articlesUrl}/${article.id}`;
     return this.http
-      .put(url, JSON.stringify(article), { headers: this.headers })
+      .put(`${this.articlesUrl}/${article.id}`, JSON.stringify(article), { headers: this.headers })
       .toPromise()
       .then(() => article)
       .catch(this.handleError);
