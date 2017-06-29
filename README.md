@@ -30,17 +30,17 @@ Honestly, the more I work with other solutions, the harder it gets to say a lot 
 - **A complete solution** 
 - **Class syntax:** makes the code very well organized
 - **TypeScript** 
-- **Huge build:** Angular2's production build is 3 to 5 times as big as the other solutions!
 
 #### Cons
 There seem to be a lot of negatives. Far too much changed between Angular1 and 2. The HTML templating syntax was the least of it. They added TypeScript, both SystemJS and Webpack, Rx.js, and replaced promises with observables. The learning curve is very heavy. Also, because Angular has it's own special version of everything (e.g. $http, $q, etc) it is extremely difficult to migrate existing projects. Everything needs to be rewritten.
 - **Too much has changed**
 - **Very steep learning curve**
 - **It's not plain JS:** difficult to migrate to other frameworks or upgrade to Angular2
-- **Somewhat verbose:** every file needs tons of import statments
+- **Somewhat verbose:** every file needs tons of import statements
 - **Angular2 syntax:** not as simple as Angular1. ng-____ was so much simpler.
 - **TypeScript** 
 - **Errors aren't helpful at all**
+- **Huge build:** Angular2's production build is 3 to 5 times as big as the other solutions!
 
 
 ### React+Redux
@@ -65,7 +65,7 @@ It really does seem like someone took the best parts of the competing solutions!
 - **Redux's state management:** single store, immutable state
 - **Great CLI:** Vue, router, Webpack, HMR, eslint, tests
 - **Simplicity**
-- **Recommenations but not too opinionated:** Angular2 often seems too rigid while React has the opposite extreme: you need to figure out all the pieces you want to use for your solution. Vue seems to take the middle road: it recommends a complete solution but ultimately lets you pick the pieces you want to use. Better yet, you can scaffold out a new project with a single line in the terminal.
+- **Recommendations but not too opinionated:** Angular2 often seems too rigid while React has the opposite extreme: you need to figure out all the pieces you want to use for your solution. Vue seems to take the middle road: it recommends a complete solution but ultimately lets you pick the pieces you want to use. Better yet, you can scaffold out a new project with a single line in the terminal.
 
 #### Cons
 - **Code style:** linting rules are a little weird. It prefers no semicolons and adds spaces in some weird places. 
