@@ -13,7 +13,8 @@ It's just a simple list of "blog articles" with create, read, update, and delete
 A note to developers that are unfamiliar with any of the 3 solutions: the JavaScript ecosystem has moved forward a lot since Angular 1's debut. 
 - ES6 has brought many new features to JavaScript: classes, modules, multi-line strings, default parameters, arrow functions, destructuring, block scopes, let, const, and shorthand property names
 - Transpilers are being used to handle these new features: Babel (for React and Vue) and TypeScript (for Angular2)
-- Build tools have changed: Bower, Grunt, and Gulp have been replaced with import statements, Webpack, and SystemJS
+- Build tools have changed: Bower, Grunt, and Gulp have been replaced with import statements and Webpack
+
 Whichever you choose, there will be a lot to learn.
 
 ---
@@ -29,6 +30,7 @@ Honestly, the more I work with other solutions, the harder it gets to say a lot 
 - **A complete solution** 
 - **Class syntax:** makes the code very well organized
 - **TypeScript** 
+- **Huge build:** Angular2's production build is 3 to 5 times as big as the other solutions!
 
 #### Cons
 There seem to be a lot of negatives. Far too much changed between Angular1 and 2. The HTML templating syntax was the least of it. They added TypeScript, both SystemJS and Webpack, Rx.js, and replaced promises with observables. The learning curve is very heavy. Also, because Angular has it's own special version of everything (e.g. $http, $q, etc) it is extremely difficult to migrate existing projects. Everything needs to be rewritten.
@@ -52,6 +54,7 @@ React seems to have a few very clear advantages. If you need to make a mobile ap
 Implementing delete operation for our CRUD app was by far the most complex in React+Redux. It required 13 pieces of code strewn across 7 files! Also, standardization is a big problem. While Angular is too strict with it's recommendations, React is too loose. Some developers feel it is better to have "more choices!!!" I feel the opposite. React technologies seem to change often. Flux has been replaced by Redux. Redux seems like it's going to be replaced by MobX. The examples I found used Thunks. I'm told that Saga is a better (and more complicated) solution. Researching, learning, comparing, and vetting the myriad choices is very time consuming. Especially in a large corporation with many teams in many countries, standardization (having a "right way") would seem to be a huge benefit.
 - **Complexity**
 - **No standard technologies**
+- **JSX syntax:** can be complicated. It's far simpler to use HTML and Angular1 or Vue syntax
 
 
 ### Vue+Vuex
