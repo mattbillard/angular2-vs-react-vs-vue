@@ -1,5 +1,5 @@
 <template>
-  <div v-if="article">
+  <div v-if="article" v-on:submit="saveArticle($event)">
     <h1>{{ (article.id) ? 'Update' : 'Create'}}</h1>
     <form>
       <div class="form-group" v-if="article.id">
@@ -9,16 +9,16 @@
       
       <div class="form-group">
         <label for="title">title</label>
-        <input v-model="article.title" type="input" class="form-control" id="title" name="title" placeholder="title">
+        <input v-model="article.title" type="input" class="form-control" id="title" name="title" placeholder="title" autocomplete="off" autofocus>
       </div>
 
       <div class="form-group">
         <label for="text">text</label>
-        <textarea v-model="article.text" class="form-control" id="text" name="text" placeholder="text"></textarea>
+        <textarea v-model="article.text" class="form-control" id="text" name="text" placeholder="text" autocomplete="off"></textarea>
       </div>
 
-      <button v-on:click="goToArticles()" class="btn btn-default" type="button">Cancel</button>
-      <button v-on:click="saveArticle()" class="btn btn-primary" type="button">Save</button>
+      <button class="btn btn-default" type="button" v-on:click="goToArticles()">Cancel</button>
+      <button class="btn btn-primary" type="submit">Save</button>
     </form>
   </div>
 </template>
@@ -37,7 +37,8 @@ export default {
       this.$router.push('/articles/')
     },
 
-    saveArticle () {
+    saveArticle (event) {
+      event.preventDefault()
       this.$store.dispatch('saveArticle', { article: this.article })
         .then(() => {
           console.log('Success: article saved')

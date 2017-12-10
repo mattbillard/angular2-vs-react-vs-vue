@@ -11,7 +11,8 @@ const TextInput = ({name, label, onChange, placeholder, value}) => {
           className="form-control"
           placeholder={placeholder}
           value={value}
-          onChange={onChange}/>
+          onChange={onChange}
+          autoComplete="off"/>
       </div>
     </div>
   );

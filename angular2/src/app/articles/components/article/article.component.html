@@ -1,6 +1,6 @@
 <div *ngIf="article">
   <h1>{{ (article.id) ? 'Update' : 'Create'}}</h1>
-  <form>
+  <form (submit)="saveArticle()">
     <div class="form-group" *ngIf="article.id">
       <label>id</label>
       {{article.id}}
@@ -8,15 +8,15 @@
     
     <div class="form-group">
       <label for="title">title</label>
-      <input [(ngModel)]="article.title" type="input" class="form-control" id="title" name="title" placeholder="title">
+      <input [(ngModel)]="article.title" type="input" class="form-control" id="title" name="title" placeholder="title" autocomplete="off" autofocus>
     </div>
 
     <div class="form-group">
       <label for="text">text</label>
-      <textarea [(ngModel)]="article.text" class="form-control" id="text" name="text" placeholder="text"></textarea>
+      <textarea [(ngModel)]="article.text" class="form-control" id="text" name="text" placeholder="text" autocomplete="off"></textarea>
     </div>
 
-    <button (click)="goToArticles()" class="btn btn-default" type="button">Cancel</button>
-    <button (click)="saveArticle()" class="btn btn-primary" type="button">Save</button>
+    <button class="btn btn-default" type="button" (click)="goToArticles()" >Cancel</button>
+    <button class="btn btn-primary" type="submit">Save</button>
   </form>
 </div>

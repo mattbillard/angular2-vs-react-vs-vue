@@ -21,7 +21,7 @@ let articles = {
   12: { id: 12, title: `Swift`, text: `Swift is a general-purpose, multi-paradigm, compiled programming language developed by Apple Inc. for iOS, macOS, watchOS, tvOS, and Linux. Swift is designed to work with Apple's Cocoa and Cocoa Touch frameworks and the large body of extant Objective-C (ObjC) code written for Apple products. Swift is intended to be more resilient to erroneous code ("safer") than Objective-C, and more concise. It is built with the LLVM compiler framework included in Xcode 6 and later and, on platforms other than Linux,[11] uses the Objective-C runtime library, which allows C, Objective-C, C++ and Swift code to run within one program.[12]` },
 };
 
-const DELAY = 250;
+const DELAY = 750;
 function delayedSend(res, data) {
   setTimeout(() => res.send(data), DELAY);
 }

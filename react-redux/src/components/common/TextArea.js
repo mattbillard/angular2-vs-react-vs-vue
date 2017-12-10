@@ -10,7 +10,8 @@ const TextArea = ({name, label, onChange, placeholder, value}) => {
           className="form-control"
           placeholder={placeholder}
           value={value}
-          onChange={onChange}></textarea>
+          onChange={onChange}
+          autoComplete="off"></textarea>
       </div>
     </div>
   );
