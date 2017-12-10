@@ -18,11 +18,18 @@ export class ArticlePage extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.article.id != nextProps.article.id) {
-      // Necessary to populate form when existing article is loaded directly.
+    if (this.props.article && this.props.article.id != nextProps.article.id) {
       this.setState({
         article: Object.assign({}, nextProps.article)
       });
+    }
+  }
+
+  componentWillMount(props) {
+    if (this.props.params.id) {
+      this.props.actions.getArticleById(this.props.params.id);
+    } else {
+      this.props.actions.getNewArticle();
     }
   }
 
@@ -62,7 +69,6 @@ export class ArticlePage extends React.Component {
 }
 
 ArticlePage.propTypes = {
-  article: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 };
 
@@ -71,23 +77,9 @@ ArticlePage.contextTypes = {
   router: PropTypes.object
 };
 
-function getArticleById(articles, id) {
-  const article = articles.filter(article => article.id == id);
-  if (article) return article[0]; //since filter returns an array, have to grab the first.
-  return null;
-}
-
 function mapStateToProps(state, ownProps) {
-  const articleId = ownProps.params.id;
-
-  let article = {id: '', title: '', text: ''};
-
-  if (articleId && state.articles.length > 0) {
-    article = getArticleById(state.articles, articleId);
-  }
-
   return {
-    article: article
+    article: state.article 
   };
 }
 

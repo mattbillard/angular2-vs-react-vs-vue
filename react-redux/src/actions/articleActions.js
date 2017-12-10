@@ -1,50 +1,57 @@
 import * as types from './actionTypes';
 
-const articlesUrl = `${window.location.protocol}//${window.location.hostname}:3000/api/articles`;
+const ARTICLES_URL = `${window.location.protocol}//${window.location.hostname}:3000/api/articles`;
 
-export function loadArticlesSuccess(articles) {
-  return { type: types.LOAD_ARTICLES_SUCCESS, articles};
+
+function createArticle(article, dispatch) {
+  return $.ajax({
+    url: ARTICLES_URL,
+    method: 'POST',
+    data: article
+  })
+  .then(article => dispatch({type: types.CREATE_ARTICLE_SUCCESS, article}))
+  .catch(error => console.error(error));
 }
 
-export function createArticleSuccess(article) {
-  return {type: types.CREATE_ARTICLE_SUCCESS, article};
+function updateArticle(article, dispatch) {
+  return $.ajax({
+    url: `${ARTICLES_URL}/${article.id}`,
+    method: 'PUT',
+    data: article
+  })
+  .then(article => dispatch({type: types.UPDATE_ARTICLE_SUCCESS, article}))
+  .catch(error => console.error(error));
 }
 
-export function deleteArticleSuccess(articleId) {
-  console.log('--- articleActions.js: deleteArticleSuccess()');
-  return {type: types.DELETE_ARTICLE_SUCCESS, articleId};
-}
-
-export function updateArticleSuccess(article) {
-  return {type: types.UPDATE_ARTICLE_SUCCESS, article};
-}
 
 export function deleteArticle(articleId) {
   return function (dispatch, getState) {
     console.log('--- articleActions.js: deleteArticle()');
 
     return $.ajax({
-      url: `${articlesUrl}/${articleId}`,
+      url: `${ARTICLES_URL}/${articleId}`,
       method: 'DELETE'
-    }).then(() => {
-      dispatch(deleteArticleSuccess(articleId));
-    }).catch(error => {
-      throw (error);
-    });
+    })
+    .then(() => dispatch({type: types.DELETE_ARTICLE_SUCCESS, articleId}))
+    .catch(error => console.error(error));
   };
 }
 
-export function loadArticles() {
+export function getArticleById(articleId) {
   return function(dispatch) {
     return $.ajax({ 
-      url: articlesUrl, 
+      url: `${ARTICLES_URL}/${articleId}`,
       method: 'GET' 
-    }).then(articles => {
-      dispatch(loadArticlesSuccess(articles));
-    }).catch(error => {
-      throw(error);
-    });
+    })
+    .then(article => dispatch({ type: types.GET_ARTICLE_SUCCESS, article}))
+    .catch(error => console.error(error));
   };
+}
+
+export function getNewArticle() {
+  return function(dispatch) {
+    dispatch({ type: types.GET_NEW_ARTICLE });
+  }
 }
 
 export function saveArticle(article) {
@@ -55,24 +62,4 @@ export function saveArticle(article) {
       return createArticle(article, dispatch);
     }
   };
-}
-
-function createArticle(article, dispatch) {
-  return $.ajax({
-    url: articlesUrl,
-    method: 'POST',
-    data: article
-  })
-  .then(article => { dispatch(createArticleSuccess(article)); })
-  .catch(error => { throw (error); });
-}
-
-function updateArticle(article, dispatch) {
-  return $.ajax({
-    url: `${articlesUrl}/${article.id}`,
-    method: 'PUT',
-    data: article
-  })
-  .then(article => { dispatch(updateArticleSuccess(article)); })
-  .catch(error => { throw (error); });
 }

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as articleActions from '../../actions/articleActions';
+import * as articlesActions from '../../actions/articlesActions';
 import ArticlesList from './ArticlesList';
 import { Link } from 'react-router';
 
@@ -10,8 +10,18 @@ class ArticlesPage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
+    this.props.actions.getArticles();
+
     console.log('--- ArticlesPage.js: this.deleteArticle = this.deleteArticle.bind(this);');
     this.deleteArticle = this.deleteArticle.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.articles != nextProps.articles) {
+      this.setState({
+        articles: Object.assign({}, nextProps.articles)
+      });
+    }
   }
 
   articleRow(article, index) {
@@ -57,7 +67,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(articleActions, dispatch)
+    actions: bindActionCreators(articlesActions, dispatch)
   };
 }
 

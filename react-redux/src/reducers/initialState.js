@@ -1,3 +1,4 @@
 export default {
-  articles: []
+  articles: [],
+  article: null
 };
