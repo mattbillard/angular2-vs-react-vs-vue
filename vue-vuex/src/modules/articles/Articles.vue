@@ -34,7 +34,7 @@ export default {
   name: 'articles',
   computed: {
     articles () {
-      return this.$store.state.articles.articles
+      return this.$store.state.articlesModule.articles
     }
   },
 

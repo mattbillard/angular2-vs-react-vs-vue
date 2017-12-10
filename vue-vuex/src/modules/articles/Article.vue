@@ -28,7 +28,7 @@ export default {
   name: 'article',
   computed: {
     article () {
-      return this.$store.state.articles.article
+      return this.$store.state.articlesModule.article
     }
   },
 
