@@ -17,19 +17,19 @@ export class ArticlePage extends React.Component {
     this.saveArticle = this.saveArticle.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.article && this.props.article.id != nextProps.article.id) {
-      this.setState({
-        article: Object.assign({}, nextProps.article)
-      });
-    }
-  }
-
   componentWillMount(props) {
     if (this.props.params.id) {
       this.props.actions.getArticleById(this.props.params.id);
     } else {
       this.props.actions.getNewArticle();
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.article && this.props.article.id != nextProps.article.id) {
+      this.setState({
+        article: Object.assign({}, nextProps.article)
+      });
     }
   }
 
@@ -69,7 +69,9 @@ export class ArticlePage extends React.Component {
 }
 
 ArticlePage.propTypes = {
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  article: PropTypes.object,
+  params: PropTypes.object.isRequired
 };
 
 //Pull in the React Router context so router is available on this.context.router.

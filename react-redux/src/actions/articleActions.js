@@ -51,7 +51,7 @@ export function getArticleById(articleId) {
 export function getNewArticle() {
   return function(dispatch) {
     dispatch({ type: types.GET_NEW_ARTICLE });
-  }
+  };
 }
 
 export function saveArticle(article) {
