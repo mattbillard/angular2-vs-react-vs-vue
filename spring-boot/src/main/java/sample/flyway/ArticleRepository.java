@@ -2,6 +2,6 @@ package sample.flyway;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PersonRepository extends JpaRepository<Person, Long> {
+public interface ArticleRepository extends JpaRepository<Article, Long> {
 
 }

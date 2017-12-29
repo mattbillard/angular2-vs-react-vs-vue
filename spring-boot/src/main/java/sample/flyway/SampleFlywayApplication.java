@@ -29,7 +29,7 @@ public class SampleFlywayApplication {
 	}
 
 	@Bean
-	public CommandLineRunner runner(PersonRepository repository) {
+	public CommandLineRunner runner(ArticleRepository repository) {
 		return new CommandLineRunner() {
 
 			@Override
