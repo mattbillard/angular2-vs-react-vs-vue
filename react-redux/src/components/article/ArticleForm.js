@@ -11,7 +11,7 @@ const ArticleForm = ({article, onChange, onCancel, onSave}) => {
   ) : '';
 
   return (
-    <form>
+    <form onSubmit={onSave}>
       <h1>{article.id ? 'Update' : 'Create'}</h1>
 
       {articleId}
@@ -30,8 +30,8 @@ const ArticleForm = ({article, onChange, onCancel, onSave}) => {
         onChange={onChange}
         placeholder="text"/>
 
-      <button onClick={onCancel} className="btn btn-default" type="button">Cancel</button>&nbsp;
-      <button onClick={onSave} className="btn btn-primary" type="button">Save</button>
+      <button className="btn btn-default" type="button" onClick={onCancel}>Cancel</button>&nbsp;
+      <button className="btn btn-primary" type="submit">Save</button>
     </form>
   );
 };
