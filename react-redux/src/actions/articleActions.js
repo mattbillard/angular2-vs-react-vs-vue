@@ -6,26 +6,16 @@ const ARTICLES_URL = `${window.location.protocol}//${window.location.hostname}:3
 
 function createArticle(article, dispatch) {
   return axios.post(ARTICLES_URL, article)
-  .then(response => dispatch({type: types.CREATE_ARTICLE_SUCCESS, article: responsde.data}))
+  .then(response => dispatch({type: types.CREATE_ARTICLE_SUCCESS, article: response.data}))
   .catch(error => console.error(error));
 }
 
 function updateArticle(article, dispatch) {
   return axios.put(`${ARTICLES_URL}/${article.id}`, article)
-  .then(response => dispatch({type: types.UPDATE_ARTICLE_SUCCESS, article: responsde.data}))
+  .then(response => dispatch({type: types.UPDATE_ARTICLE_SUCCESS, article: response.data}))
   .catch(error => console.error(error));
 }
 
-
-export function deleteArticle(articleId) {
-  return function (dispatch, getState) {
-    console.log('--- articleActions.js: deleteArticle()');
-
-    return axios.delete(`${ARTICLES_URL}/${articleId}`)
-    .then(() => dispatch({type: types.DELETE_ARTICLE_SUCCESS, articleId}))
-    .catch(error => console.error(error));
-  };
-}
 
 export function getArticleById(articleId) {
   return function(dispatch) {
